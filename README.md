@@ -1,3 +1,18 @@
 # langgraph-demo
-# langgraph-demo
-# langgraph-demo
+
+```
+virtualenv venv
+python3 -m venv venv
+source venv/bin/activate
+pip3 install -r requirements.txt
+```
+
+Create `.env` file and fill your api keys:
+```
+OPENAI_API_KEY=your_openai_key_here
+LANGSMITH_API_KEY=your_langsmith_key_here
+LANGCHAIN_TRACING_V2=true
+LANGCHAIN_PROJECT=langgraph-youtube-demo
+LANGCHAIN_ENDPOINT=https://api.smith.langchain.com
+
+```
