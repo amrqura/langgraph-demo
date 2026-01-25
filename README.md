@@ -16,3 +16,8 @@ LANGCHAIN_PROJECT=langgraph-youtube-demo
 LANGCHAIN_ENDPOINT=https://api.smith.langchain.com
 
 ```
+
+# Running the app
+```
+python4 main.py
+```
