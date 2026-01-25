@@ -1,5 +1,6 @@
 # langgraph-demo
 
+In first step, you will need to create a python virtual env
 ```
 virtualenv venv
 python3 -m venv venv
