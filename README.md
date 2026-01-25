@@ -19,5 +19,5 @@ LANGCHAIN_ENDPOINT=https://api.smith.langchain.com
 
 # Running the app
 ```
-python4 main.py
+python3 main.py
 ```
