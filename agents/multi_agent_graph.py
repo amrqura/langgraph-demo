@@ -3,7 +3,7 @@ from typing import Optional, TypedDict, Dict, Any, List
 from langchain_core.messages import SystemMessage, HumanMessage
 from langchain_openai import ChatOpenAI
 from pydantic import BaseModel, Field
-from prompts import PLANNER_SYSTEM, RESEARCHER_SYSTEM, WRITER_SYSTEM, CRITIC_SYSTEM, DECIDER_SYSTEM
+from .prompts import PLANNER_SYSTEM, RESEARCHER_SYSTEM, WRITER_SYSTEM, CRITIC_SYSTEM, FINALIZER_SYSTEM
 
 class GraphState(TypedDict):
     question: str
@@ -93,9 +93,9 @@ Draft:
 
 
 
-def decider_node(state: GraphState) -> GraphState:
+def finalizer_node(state: GraphState) -> GraphState:
     resp = llm.invoke([
-        SystemMessage(content=DECIDER_SYSTEM),
+        SystemMessage(content=FINALIZER_SYSTEM),
         HumanMessage(content=f"""
 Question:
 {state['question']}
@@ -153,7 +153,7 @@ def build_app():
     workflow.add_node("researcher", researcher_node)
     workflow.add_node("writer", writer_node)
     workflow.add_node("critic", critic_node)
-    workflow.add_node("decider", decider_node)
+    workflow.add_node("finalizer", finalizer_node)
 
     # Entry
     workflow.set_entry_point("planner")
@@ -169,10 +169,10 @@ def build_app():
         should_revise,
         {
             "revise": "writer",
-            "finalize": "decider",
+            "finalize": "finalizer",
         },
     )
 
-    workflow.add_edge("decider", END)
+    workflow.add_edge("finalizer", END)
 
     return workflow.compile()

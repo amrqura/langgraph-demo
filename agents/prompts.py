@@ -24,7 +24,7 @@ Review the draft for:
 Return JSON matching the schema.
 """
 
-DECIDER_SYSTEM = """You are the Decider agent.
+FINALIZER_SYSTEM = """You are the Finalizer agent.
 Given the plan + research notes + (optional) critique, produce the FINAL answer.
 If critique exists, incorporate fixes.
 Output must be polished and concise with headings and a confidence score.
